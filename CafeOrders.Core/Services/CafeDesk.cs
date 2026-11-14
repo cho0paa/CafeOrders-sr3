@@ -12,6 +12,18 @@ namespace CafeOrders.Core.Services;
 /// </summary>
 public sealed class CafeDesk
 {
+    private static readonly StateRule s_editableRule =
+        new(OrderStatus.New, "order.editable", "Додавати позиції можна лише до нового замовлення");
+
+    private static readonly StateRule s_kitchenRule =
+        new(OrderStatus.New, "order.kitchen", "На кухню передають лише нове замовлення");
+
+    private static readonly StateRule s_serveRule =
+        new(OrderStatus.Preparing, "order.serve", "Подати можна лише замовлення, що готується");
+
+    private static readonly StateRule s_payableRule =
+        new(OrderStatus.Served, "order.payable", "Закрити можна лише поданий рахунок");
+
     private readonly IOrderRepository _orders;
     private readonly IMenuCatalog _menu;
     private readonly BillCalculator _bills;
@@ -57,7 +69,7 @@ public sealed class CafeDesk
         ArgumentException.ThrowIfNullOrWhiteSpace(code);
         using IDisposable? scope = _log.BeginScope("UC-02 Order:{OrderId}", orderId);
         Order order = Require(orderId);
-        EnsureStatus(order, OrderStatus.New, "order.editable", "Додавати позиції можна лише до нового замовлення");
+        EnsureStatus(order, s_editableRule);
         var line = new OrderLine(code.Trim().ToUpperInvariant(), quantity, PriceOf(code));
         order.AddLine(line);
         _orders.Save();
@@ -68,12 +80,12 @@ public sealed class CafeDesk
     /// <summary>UC-03: передає замовлення на кухню (New → Preparing).</summary>
     /// <param name="orderId">Номер замовлення.</param>
     public void SendToKitchen(int orderId) =>
-        Transition(orderId, OrderStatus.New, "order.kitchen", "На кухню передають лише нове замовлення", o => o.StartPreparing());
+        Transition(orderId, s_kitchenRule, o => o.StartPreparing());
 
     /// <summary>UC-03: позначає, що страви подано (Preparing → Served).</summary>
     /// <param name="orderId">Номер замовлення.</param>
     public void Serve(int orderId) =>
-        Transition(orderId, OrderStatus.Preparing, "order.serve", "Подати можна лише замовлення, що готується", o => o.Serve());
+        Transition(orderId, s_serveRule, o => o.Serve());
 
     /// <summary>UC-04: розраховує рахунок без зміни стану.</summary>
     /// <param name="orderId">Номер замовлення.</param>
@@ -89,7 +101,7 @@ public sealed class CafeDesk
     {
         using IDisposable? scope = _log.BeginScope("UC-04 Order:{OrderId}", orderId);
         Order order = Require(orderId);
-        EnsureStatus(order, OrderStatus.Served, "order.payable", "Закрити можна лише поданий рахунок");
+        EnsureStatus(order, s_payableRule);
         BillSummary bill = _bills.BillOf(order);
         if (paid < bill.Total)
         {
@@ -139,11 +151,12 @@ public sealed class CafeDesk
     /// <returns>Рядки звіту за спаданням порцій.</returns>
     public IReadOnlyList<PopularityRow> Popularity() => PopularityReport.Build(_orders.GetAll());
 
-    private static void EnsureStatus(Order order, OrderStatus expected, string rule, string message)
+    private void EnsureStatus(Order order, StateRule rule)
     {
-        if (order.Status != expected)
+        if (order.Status != rule.Expected)
         {
-            throw new DomainRuleException(rule, $"{message}; поточний стан {order.Status}");
+            _log.LogWarning("Правило {Rule}: замовлення {OrderId} у стані {Status}", rule.Code, order.Id, order.Status);
+            throw new DomainRuleException(rule.Code, $"{rule.Message}; поточний стан {order.Status}");
         }
     }
 
@@ -171,15 +184,10 @@ public sealed class CafeDesk
         return combo.Price;
     }
 
-    private void Transition(int orderId, OrderStatus expected, string rule, string message, Action<Order> step)
+    private void Transition(int orderId, StateRule rule, Action<Order> step)
     {
         Order order = Require(orderId);
-        if (order.Status != expected)
-        {
-            _log.LogWarning("Перехід відхилено: замовлення {OrderId} у стані {Status}", orderId, order.Status);
-            throw new DomainRuleException(rule, $"{message}; поточний стан {order.Status}");
-        }
-
+        EnsureStatus(order, rule);
         step(order);
         _orders.Save();
         _log.LogInformation("Замовлення {OrderId} → {Status}", orderId, order.Status);
@@ -196,4 +204,7 @@ public sealed class CafeDesk
 
         return order;
     }
+
+    /// <summary>Правило переходу: очікуваний стан, код правила й пояснення для касира.</summary>
+    private readonly record struct StateRule(OrderStatus Expected, string Code, string Message);
 }
