@@ -160,6 +160,27 @@ public class CafeDeskTests
         Assert.True(repository.AddCalls >= 2);
     }
 
+    [Fact]
+    public void Serve_NewOrder_ThrowsServeRule()
+    {
+        CafeDesk desk = NewDesk(out _);
+        int id = desk.OpenOrder(7, true, Morning);
+
+        var ex = Assert.Throws<DomainRuleException>(() => desk.Serve(id));
+
+        Assert.Equal("order.serve", ex.Rule);
+    }
+
+    [Fact]
+    public void BillOf_TakeawayOrder_HasNoServiceCharge()
+    {
+        CafeDesk desk = NewDesk(out _);
+        int id = desk.OpenOrder(7, false, Morning);
+        desk.AddItem(id, "DES-002", 2);
+
+        Assert.Equal(new BillSummary(250m, 0m, 250m), desk.BillOf(id));
+    }
+
     private static int ServedOrder(CafeDesk desk)
     {
         int id = desk.OpenOrder(7, true, Morning);

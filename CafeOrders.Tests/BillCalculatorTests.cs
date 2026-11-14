@@ -57,6 +57,16 @@ public class BillCalculatorTests
     }
 
     [Fact]
+    public void PopularityReport_TextOf_PrintsAlignedTable()
+    {
+        var rows = new List<PopularityRow> { new("CAP-001", 4, 260m) };
+
+        string text = PopularityReport.TextOf(rows).Replace("\r\n", "\n", StringComparison.Ordinal);
+
+        Assert.Equal("Код         Порцій      Виторг\nCAP-001          4      260.00\n", text);
+    }
+
+    [Fact]
     public void ComboMeal_SingleComponent_Throws()
     {
         Assert.Throws<ArgumentException>(() => new ComboMeal("CMB-9", "Один", new[] { "CAP-001" }, 50m));
