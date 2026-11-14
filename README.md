@@ -49,7 +49,7 @@
     dotnet test CafeOrders.Tests --collect:"XPlat Code Coverage"
     reportgenerator -reports:"CafeOrders.Tests/TestResults/*/coverage.cobertura.xml" -targetdir:coverage "-assemblyfilters:+CafeOrders.Core"
 
-Тестів 121 (108 основних і 13 характеризаційних), усі зелені. Покриття бібліотеки
+Тестів 123 (110 основних і 13 характеризаційних), усі зелені. Покриття бібліотеки
 `CafeOrders.Core`: **94,6 % рядків, 87,3 % гілок**.
 
 Конвеєр `.github/workflows/ci.yml` на кожен push і pull request перевіряє форматування,
@@ -69,5 +69,5 @@ Microsoft.Extensions.Logging, System.Text.Json, GitHub Actions.
 - Одна каса: файл замовлень не захищено від одночасного запису кількома процесами.
 - Оплата лише готівкою; фіскального чека й оплати карткою немає.
 - Меню змінюється тільки редагуванням `data/menu.json`, з каси — ні.
-- Консольний шар (`Program.cs`, `CafeConsole`) перевірено ручним сценарним запуском, а не автотестами.
+- Консольний шар перевірено переважно ручним сценарним запуском: автотестами накрито лише барикаду вводу й дві команди меню.
 - У рішенні лишається код лабораторних 3–7 (`Documents`, `Billing`, `OrderService`), який каса не використовує.
