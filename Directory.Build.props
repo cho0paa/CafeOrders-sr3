@@ -11,7 +11,7 @@
     <AnalysisLevel>8.0</AnalysisLevel>
     <AnalysisMode>Recommended</AnalysisMode>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <VersionPrefix>0.8.0</VersionPrefix>
+    <VersionPrefix>1.0.0</VersionPrefix>
     <Authors>Новіков Артем Олександрович</Authors>
     <Product>CafeOrders</Product>
     <!-- ЛР8: вразливий пакет дає NU1901–NU1904, а через TreatWarningsAsErrors — помилку -->

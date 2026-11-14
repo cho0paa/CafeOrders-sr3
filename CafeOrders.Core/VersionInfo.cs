@@ -6,7 +6,7 @@ namespace CafeOrders.Core;
 public static class VersionInfo
 {
     /// <summary>Повертає семантичну версію без метаданих складання (частини після «+»).</summary>
-    /// <returns>Рядок версії, наприклад 0.8.0.</returns>
+    /// <returns>Рядок версії, наприклад 1.0.0.</returns>
     public static string Current()
     {
         Assembly assembly = typeof(VersionInfo).Assembly;
