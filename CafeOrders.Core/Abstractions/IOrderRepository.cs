@@ -17,4 +17,11 @@ public interface IOrderRepository
     /// <summary>Повертає всі замовлення.</summary>
     /// <returns>Знімок списку замовлень на момент виклику.</returns>
     IReadOnlyList<Order> GetAll();
+
+    /// <summary>
+    /// Зберігає поточний стан замовлень. Сховищу в пам’яті зберігати нічого — реалізація за замовчуванням порожня.
+    /// </summary>
+    void Save()
+    {
+    }
 }
