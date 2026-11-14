@@ -178,21 +178,7 @@ public class Bill
     /// Перевіряє, чи заповнено рахунок коректно.
     /// </summary>
     /// <returns>true, якщо номер, ім’я гостя, рядки і стан допустимі.</returns>
-    public bool IsValid()
-    {
-        if (Id is not null && Id.Length > 0
-            && GuestName is not null
-            && GuestName.Length > MinGuestNameLength - 1
-            && _lines.Count > 0
-            && _lines.Count < MaxLineCount
-            && Status >= StatusNew
-            && Status <= StatusCancelled)
-        {
-            return true;
-        }
-
-        return false;
-    }
+    public bool IsValid() => HasValidHeader() && HasValidBody();
 
     /// <summary>
     /// Формує текстовий чек: рядок на кожну страву та підсумок без знижки постійного гостя.
@@ -214,6 +200,17 @@ public class Bill
         report = report + "Разом: " + CalculateTotal(false) + "\n";
         return report;
     }
+
+    private bool HasValidHeader() =>
+        !string.IsNullOrEmpty(Id)
+        && GuestName is not null
+        && GuestName.Length >= MinGuestNameLength;
+
+    private bool HasValidBody() =>
+        _lines.Count > 0
+        && _lines.Count < MaxLineCount
+        && Status >= StatusNew
+        && Status <= StatusCancelled;
 
     // Рядок рахунку зберігається типізовано: раніше числа зберігалися текстом і щоразу
     // розбиралися назад у числа (борг ЛР2, пункт 4).
