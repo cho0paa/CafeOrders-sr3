@@ -49,8 +49,8 @@
     dotnet test CafeOrders.Tests --collect:"XPlat Code Coverage"
     reportgenerator -reports:"CafeOrders.Tests/TestResults/*/coverage.cobertura.xml" -targetdir:coverage "-assemblyfilters:+CafeOrders.Core"
 
-Тестів 119 (106 основних і 13 характеризаційних), усі зелені. Покриття бібліотеки
-`CafeOrders.Core`: **92 % рядків, 84,7 % гілок**.
+Тестів 121 (108 основних і 13 характеризаційних), усі зелені. Покриття бібліотеки
+`CafeOrders.Core`: **94,6 % рядків, 87,3 % гілок**.
 
 Конвеєр `.github/workflows/ci.yml` на кожен push і pull request перевіряє форматування,
 складання Release без попереджень, тести й поріг покриття 70 % рядків бібліотеки.
