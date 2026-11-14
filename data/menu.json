@@ -1,0 +1,442 @@
+{
+  "items": [
+    {
+      "code": "ESP-001",
+      "title": "Еспресо",
+      "price": 45,
+      "portionGrams": 40,
+      "isAvailable": true
+    },
+    {
+      "code": "ESP-002",
+      "title": "Допіо",
+      "price": 60,
+      "portionGrams": 60,
+      "isAvailable": true
+    },
+    {
+      "code": "ESP-003",
+      "title": "Ристрето",
+      "price": 45,
+      "portionGrams": 30,
+      "isAvailable": true
+    },
+    {
+      "code": "ESP-004",
+      "title": "Лунго",
+      "price": 50,
+      "portionGrams": 90,
+      "isAvailable": true
+    },
+    {
+      "code": "AMR-001",
+      "title": "Американо",
+      "price": 50,
+      "portionGrams": 200,
+      "isAvailable": true
+    },
+    {
+      "code": "AMR-002",
+      "title": "Американо з молоком",
+      "price": 55,
+      "portionGrams": 250,
+      "isAvailable": true
+    },
+    {
+      "code": "CAP-001",
+      "title": "Капучино",
+      "price": 65,
+      "portionGrams": 250,
+      "isAvailable": true
+    },
+    {
+      "code": "CAP-002",
+      "title": "Капучино великий",
+      "price": 80,
+      "portionGrams": 350,
+      "isAvailable": true
+    },
+    {
+      "code": "CAP-003",
+      "title": "Капучино на вівсяному",
+      "price": 75,
+      "portionGrams": 250,
+      "isAvailable": true
+    },
+    {
+      "code": "LAT-001",
+      "title": "Лате",
+      "price": 70,
+      "portionGrams": 300,
+      "isAvailable": true
+    },
+    {
+      "code": "LAT-002",
+      "title": "Лате карамельний",
+      "price": 80,
+      "portionGrams": 300,
+      "isAvailable": true
+    },
+    {
+      "code": "LAT-003",
+      "title": "Лате лавандовий",
+      "price": 85,
+      "portionGrams": 300,
+      "isAvailable": true
+    },
+    {
+      "code": "LAT-004",
+      "title": "Флет вайт",
+      "price": 75,
+      "portionGrams": 200,
+      "isAvailable": true
+    },
+    {
+      "code": "LAT-005",
+      "title": "Раф",
+      "price": 85,
+      "portionGrams": 300,
+      "isAvailable": true
+    },
+    {
+      "code": "TEA-001",
+      "title": "Чай чорний",
+      "price": 40,
+      "portionGrams": 400,
+      "isAvailable": true
+    },
+    {
+      "code": "TEA-002",
+      "title": "Чай зелений",
+      "price": 40,
+      "portionGrams": 400,
+      "isAvailable": true
+    },
+    {
+      "code": "TEA-003",
+      "title": "Чай трав’яний",
+      "price": 45,
+      "portionGrams": 400,
+      "isAvailable": true
+    },
+    {
+      "code": "TEA-004",
+      "title": "Чай імбирний",
+      "price": 55,
+      "portionGrams": 400,
+      "isAvailable": true
+    },
+    {
+      "code": "TEA-005",
+      "title": "Матча лате",
+      "price": 85,
+      "portionGrams": 300,
+      "isAvailable": false
+    },
+    {
+      "code": "LEM-001",
+      "title": "Лимонад класичний",
+      "price": 75,
+      "portionGrams": 400,
+      "isAvailable": true
+    },
+    {
+      "code": "LEM-002",
+      "title": "Лимонад полуничний",
+      "price": 80,
+      "portionGrams": 400,
+      "isAvailable": true
+    },
+    {
+      "code": "LEM-003",
+      "title": "Лимонад маракуя",
+      "price": 85,
+      "portionGrams": 400,
+      "isAvailable": true
+    },
+    {
+      "code": "JUI-001",
+      "title": "Сік апельсиновий фреш",
+      "price": 95,
+      "portionGrams": 300,
+      "isAvailable": true
+    },
+    {
+      "code": "JUI-002",
+      "title": "Сік яблучний",
+      "price": 55,
+      "portionGrams": 250,
+      "isAvailable": true
+    },
+    {
+      "code": "JUI-003",
+      "title": "Смузі ягідний",
+      "price": 95,
+      "portionGrams": 350,
+      "isAvailable": true
+    },
+    {
+      "code": "CRO-001",
+      "title": "Круасан класичний",
+      "price": 55,
+      "portionGrams": 80,
+      "isAvailable": true
+    },
+    {
+      "code": "CRO-002",
+      "title": "Круасан мигдальний",
+      "price": 75,
+      "portionGrams": 100,
+      "isAvailable": true
+    },
+    {
+      "code": "CRO-003",
+      "title": "Круасан з шинкою й сиром",
+      "price": 95,
+      "portionGrams": 150,
+      "isAvailable": true
+    },
+    {
+      "code": "BAK-001",
+      "title": "Синабон",
+      "price": 60,
+      "portionGrams": 120,
+      "isAvailable": true
+    },
+    {
+      "code": "BAK-002",
+      "title": "Маффін шоколадний",
+      "price": 55,
+      "portionGrams": 100,
+      "isAvailable": true
+    },
+    {
+      "code": "BAK-003",
+      "title": "Сирник",
+      "price": 70,
+      "portionGrams": 150,
+      "isAvailable": true
+    },
+    {
+      "code": "BAK-004",
+      "title": "Бріош",
+      "price": 50,
+      "portionGrams": 90,
+      "isAvailable": true
+    },
+    {
+      "code": "BAK-005",
+      "title": "Пончик",
+      "price": 45,
+      "portionGrams": 90,
+      "isAvailable": true
+    },
+    {
+      "code": "SND-001",
+      "title": "Клаб-сендвіч",
+      "price": 145,
+      "portionGrams": 250,
+      "isAvailable": true
+    },
+    {
+      "code": "SND-002",
+      "title": "Сендвіч з куркою",
+      "price": 135,
+      "portionGrams": 230,
+      "isAvailable": true
+    },
+    {
+      "code": "SND-003",
+      "title": "Тост з авокадо",
+      "price": 140,
+      "portionGrams": 200,
+      "isAvailable": true
+    },
+    {
+      "code": "SND-004",
+      "title": "Паніні з моцарелою",
+      "price": 130,
+      "portionGrams": 220,
+      "isAvailable": true
+    },
+    {
+      "code": "SND-005",
+      "title": "Бейгл з лососем",
+      "price": 165,
+      "portionGrams": 220,
+      "isAvailable": true
+    },
+    {
+      "code": "SAL-001",
+      "title": "Салат Цезар",
+      "price": 175,
+      "portionGrams": 250,
+      "isAvailable": true
+    },
+    {
+      "code": "SAL-002",
+      "title": "Грецький салат",
+      "price": 150,
+      "portionGrams": 250,
+      "isAvailable": true
+    },
+    {
+      "code": "SAL-003",
+      "title": "Салат з тунцем",
+      "price": 170,
+      "portionGrams": 250,
+      "isAvailable": true
+    },
+    {
+      "code": "SAL-004",
+      "title": "Боул з кіноа",
+      "price": 160,
+      "portionGrams": 300,
+      "isAvailable": true
+    },
+    {
+      "code": "SOU-001",
+      "title": "Борщ",
+      "price": 95,
+      "portionGrams": 350,
+      "isAvailable": true
+    },
+    {
+      "code": "SOU-002",
+      "title": "Крем-суп грибний",
+      "price": 105,
+      "portionGrams": 300,
+      "isAvailable": true
+    },
+    {
+      "code": "SOU-003",
+      "title": "Курячий бульйон",
+      "price": 90,
+      "portionGrams": 350,
+      "isAvailable": true
+    },
+    {
+      "code": "SOU-004",
+      "title": "Гороховий суп",
+      "price": 85,
+      "portionGrams": 350,
+      "isAvailable": true
+    },
+    {
+      "code": "MAI-001",
+      "title": "Кіш лорен",
+      "price": 120,
+      "portionGrams": 200,
+      "isAvailable": true
+    },
+    {
+      "code": "MAI-002",
+      "title": "Паста карбонара",
+      "price": 165,
+      "portionGrams": 300,
+      "isAvailable": true
+    },
+    {
+      "code": "MAI-003",
+      "title": "Омлет з овочами",
+      "price": 110,
+      "portionGrams": 250,
+      "isAvailable": true
+    },
+    {
+      "code": "MAI-004",
+      "title": "Сирники зі сметаною",
+      "price": 125,
+      "portionGrams": 250,
+      "isAvailable": true
+    },
+    {
+      "code": "MAI-005",
+      "title": "Гранола з йогуртом",
+      "price": 115,
+      "portionGrams": 250,
+      "isAvailable": true
+    },
+    {
+      "code": "DES-001",
+      "title": "Чізкейк Нью-Йорк",
+      "price": 110,
+      "portionGrams": 150,
+      "isAvailable": true
+    },
+    {
+      "code": "DES-002",
+      "title": "Тірамісу",
+      "price": 125,
+      "portionGrams": 150,
+      "isAvailable": true
+    },
+    {
+      "code": "DES-003",
+      "title": "Наполеон",
+      "price": 95,
+      "portionGrams": 150,
+      "isAvailable": true
+    },
+    {
+      "code": "DES-004",
+      "title": "Брауні",
+      "price": 85,
+      "portionGrams": 100,
+      "isAvailable": true
+    },
+    {
+      "code": "DES-005",
+      "title": "Макарон (3 шт.)",
+      "price": 90,
+      "portionGrams": 60,
+      "isAvailable": true
+    },
+    {
+      "code": "DES-006",
+      "title": "Морозиво пломбір",
+      "price": 70,
+      "portionGrams": 120,
+      "isAvailable": true
+    }
+  ],
+  "combos": [
+    {
+      "code": "CMB-001",
+      "title": "Сніданок: капучино + круасан",
+      "components": [
+        "CAP-001",
+        "CRO-001"
+      ],
+      "price": 105
+    },
+    {
+      "code": "CMB-002",
+      "title": "Ланч: суп + сендвіч + чай",
+      "components": [
+        "SOU-001",
+        "SND-002",
+        "TEA-001"
+      ],
+      "price": 230
+    },
+    {
+      "code": "CMB-003",
+      "title": "Десертний: лате + чізкейк",
+      "components": [
+        "LAT-001",
+        "DES-001"
+      ],
+      "price": 160
+    },
+    {
+      "code": "CMB-004",
+      "title": "Здоровий: боул + смузі",
+      "components": [
+        "SAL-004",
+        "JUI-003"
+      ],
+      "price": 225
+    }
+  ]
+}
