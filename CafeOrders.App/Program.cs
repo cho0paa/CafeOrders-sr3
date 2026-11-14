@@ -3,6 +3,7 @@ using System.Text;
 using CafeOrders.App;
 using CafeOrders.App.Infrastructure;
 using CafeOrders.App.Input;
+using CafeOrders.App.Ui;
 using CafeOrders.Core;
 using CafeOrders.Core.Abstractions;
 using CafeOrders.Core.Billing;
@@ -58,23 +59,45 @@ static int RunWithTopLevelHandler(string[] args, ILoggerFactory loggerFactory)
 
 static void Run(string[] args, ILoggerFactory loggerFactory)
 {
-    string mode = args.Length > 0 ? args[0] : string.Empty;
-    switch (mode)
+    // Режими запуску: без аргументу — каса (СР3); решта — демонстрації лабораторних робіт.
+    var modes = new Dictionary<string, Action>(StringComparer.Ordinal)
     {
-        case "add-line":
-            RunAddLineDialog(loggerFactory);
-            break;
-        case "logging":
-            RunLoggingDemo(loggerFactory);
-            break;
-        default:
-            RunBillDemo();
-            Console.WriteLine();
-            RunCalculationDemo();
-            Console.WriteLine();
-            RunServiceDemo(loggerFactory);
-            break;
+        ["add-line"] = () => RunAddLineDialog(loggerFactory),
+        ["logging"] = () => RunLoggingDemo(loggerFactory),
+        ["demo"] = () => RunDemos(loggerFactory),
+    };
+    string mode = args.Length > 0 ? args[0] : string.Empty;
+    if (modes.TryGetValue(mode, out Action? run))
+    {
+        run();
     }
+    else
+    {
+        RunCafe();
+    }
+}
+
+static void RunDemos(ILoggerFactory loggerFactory)
+{
+    RunBillDemo();
+    Console.WriteLine();
+    RunCalculationDemo();
+    Console.WriteLine();
+    RunServiceDemo(loggerFactory);
+}
+
+// СР3: каса кав’ярні — композиційний корінь основного режиму.
+static void RunCafe()
+{
+    Directory.CreateDirectory("data");
+    using var fileLog = new FileLoggerProvider(Path.Combine("data", "cafe.local.log"));
+    using ILoggerFactory factory = LoggerFactory.Create(builder => builder.AddProvider(fileLog));
+    var menu = JsonMenuCatalog.Load(Path.Combine(AppContext.BaseDirectory, "data", "menu.json"));
+    var orders = new JsonOrderRepository(Path.Combine("data", "orders.local.json"));
+    var desk = new CafeDesk(orders, menu, new BillCalculator(new ServiceChargePolicy()), factory.CreateLogger<CafeDesk>());
+    var io = new ConsoleIo(Console.In, Console.Out, Console.IsInputRedirected);
+    Console.WriteLine($"Каса кав’ярні: меню {menu.Items.Count} позицій і {menu.Combos.Count} комплекси, замовлень {orders.GetAll().Count}");
+    new CafeConsole(desk, menu, TimeProvider.System, io).Run();
 }
 
 // ЛР2: модуль рахунку, приведений до стандарту (вивід звіряється з docs/lab02/before.txt).
