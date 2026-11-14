@@ -32,6 +32,9 @@ public sealed class Order
     /// <summary>Отримує момент створення замовлення.</summary>
     public DateTimeOffset CreatedAt { get; }
 
+    /// <summary>Отримує ознаку обслуговування за столиком (впливає на сервісний збір).</summary>
+    public bool IsTableService { get; init; }
+
     /// <summary>Отримує поточний стан; змінюється лише методами-переходами.</summary>
     public OrderStatus Status { get; private set; }
 
