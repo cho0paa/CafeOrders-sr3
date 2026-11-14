@@ -25,14 +25,18 @@ jobs:
         run: dotnet format --verify-no-changes --no-restore
 
       - name: Складання Release з аналізаторами
-        run: dotnet build -c Release --no-restore
+        run: dotnet build -c Release --no-restore -warnaserror
 
-      - name: Тести й покриття
+      - name: Тести
+        run: dotnet test -c Release --no-build
+
+      - name: Поріг покриття бібліотеки логіки (70 % рядків)
         run: >
-          dotnet test -c Release --no-restore
+          dotnet test CafeOrders.Tests -c Release --no-build
           /p:CollectCoverage=true
           /p:CoverletOutputFormat=cobertura
-          /p:Threshold=60 /p:ThresholdType=line
+          "/p:Include=[CafeOrders.Core]*"
+          /p:Threshold=70 /p:ThresholdType=line
 
       - name: Зберегти звіт про покриття
         if: always()
