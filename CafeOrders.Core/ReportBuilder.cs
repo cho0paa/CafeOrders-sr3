@@ -14,6 +14,7 @@ public sealed class ReportBuilder
     public string Build(IReadOnlyList<string> rows)
     {
         ArgumentNullException.ThrowIfNull(rows);
+        int unusedCounter;
 
         var text = new StringBuilder();
         text.AppendLine(Title.ToUpperInvariant());
